@@ -1,0 +1,27 @@
++---------------------------+           +----------------------------+
+|         <<main>>          |           |        <<notificate>>       |
+|                           |           |                            |
+|         Main              |           | +------------------------+ |
+|  (Uses factories)         |           | | <<interface>>           | |
+|                           |           | | Notification           | |
++---------------------------+           | | + Send(to: string,      | |
+                                         |   message: string): string| |
+                                         | +------------------------+ |
+                                         |            ▲               |
+                                         |            |               |
+                                         |  +---------+---------+     |
+                                         |  |                   |     |
+                                         |  |                   |     |
+                                         | EmailNotification  SMSNotification |
+                                         | + Send(...)        + Send(...)      |
+                                         |                                    |
+                                         |          <<abstract>>               |
+                                         |     NotificationFactory             |
+                                         |     + CreateNotification():Notification|
+                                         |            ▲                       |
+                                         |            |                       |
+                                         |  +---------+---------+             |
+                                         |  |                   |             |
+                                         | EmailFactory       SMSFactory      |
+                                         | + CreateNotification()              |
+                                         +------------------------------------+
